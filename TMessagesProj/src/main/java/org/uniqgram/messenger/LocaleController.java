@@ -1331,6 +1331,9 @@ public class LocaleController {
     }
 
     public void loadRemoteLanguages() {
+        // Uniqgram
+        return;
+        /*
         if (loadingRemoteLanguages) {
             return;
         }
@@ -1400,6 +1403,7 @@ public class LocaleController {
                 }
             }
         }, ConnectionsManager.RequestFlagWithoutLogin);
+        */
     }
 
     public void applyRemoteLanguage(LocaleInfo localeInfo, TLRPC.TL_langPackLanguage language, boolean force) {
