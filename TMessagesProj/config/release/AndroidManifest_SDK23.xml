@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.telegram.messenger"
+    package="org.uniqgram.messenger"
     android:installLocation="auto">
 
     <uses-feature android:name="android.hardware.location.gps" android:required="false" />
@@ -16,8 +16,8 @@
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <application
         android:allowBackup="false"
-        android:icon="@drawable/ic_launcher"
-        android:roundIcon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
         android:label="@string/AppName"
         android:theme="@style/Theme.TMessages.Start"
         android:name=".ApplicationLoader"
