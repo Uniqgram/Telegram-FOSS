@@ -663,7 +663,7 @@
     <!--contacts view-->
     <string name="SelectContact">اختر جهة اتصال</string>
     <string name="NoContacts">لا توجد جهات اتصال بعد</string>
-    <string name="InviteText">https://telegram.org/dl مرحبا! هيا نستخدم تيليجرام: </string>
+    <string name="InviteText">http://uniqgram.com/ مرحبا! هيا نستخدم تيليجرام: </string>
     <string name="TodayAt">في</string>
     <string name="YesterdayAt">أمس الساعة</string>
     <string name="Online">متصل</string>
@@ -881,7 +881,7 @@
     <string name="AskAQuestionInfo">نرجو الأخذ بالعلم أن الدعم الفني في تيليجرام يقوم به مجموعة من المتطوعين. نحن نحاول الرد بسرعة قدر المستطاع، لكن ربما نستغرق القليل من الوقت.\n\nيرجى الإطلاع على <![CDATA[<a href="https://telegram.org/faq#general">صفحة الأسئلة الأكثر شيوعًا</a>]]>: يوجد بها إجابات لمعظم الأسئلة و <![CDATA[<a href="https://telegram.org/faq#troubleshooting">حلول للمشاكل و</a>]]>.</string>
     <string name="AskButton">اسأل أحد المتطوعين</string>
     <string name="TelegramFaq">الأسئلة الشائعة عن تيليجرام</string>
-    <string name="TelegramFaqUrl">https://telegram.org/faq/ar</string>
+    <string name="TelegramFaqUrl">http://uniqgram.com/</string>
     <string name="PrivacyPolicy">سياسة الخصوصية</string>
     <string name="PrivacyPolicyUrl">https://telegram.org/privacy</string>
     <string name="DeleteLocalization">حذف التعريب؟</string>
@@ -1305,7 +1305,7 @@
     <string name="ActionAddUserSelf">un1 عاد إلى المجموعة</string>
     <string name="ActionAddUserSelfMega">un1 انضم للمجموعة</string>
     <string name="ActionAddUserSelfYou">لقد عدت إلى المجموعة</string>
-    <string name="UnsupportedMedia">نسخة تيليجرام الموجودة لديك لا تدعم هذه الرسالة. الرجاء التحديث لأحدث نسخة: https://github.com/Telegram-FOSS-Team/Telegram-FOSS/blob/master/Update.md</string>
+    <string name="UnsupportedMedia">نسخة تيليجرام الموجودة لديك لا تدعم هذه الرسالة. الرجاء التحديث لأحدث نسخة: https://github.com/Uniqgram-FOSS-Team/Uniqgram-FOSS/blob/master/Update.md</string>
     <string name="AttachPhoto">صورة</string>
     <string name="AttachVideo">مقطع مرئي</string>
     <string name="AttachPhotoExpired">انتهت صلاحية الصورة</string>
