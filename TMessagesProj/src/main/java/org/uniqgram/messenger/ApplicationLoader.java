@@ -187,7 +187,9 @@ public class ApplicationLoader extends Application {
         }
 
         ApplicationLoader app = (ApplicationLoader)ApplicationLoader.applicationContext;
-        MobileAds.initialize(app, BuildVars.ADS_ID);
+        if(!BuildConfig.APPLICATION_ID.contains("plus")) {
+            MobileAds.initialize(app, BuildVars.ADS_ID);
+        }
 
         FileLog.e("app initied");
 

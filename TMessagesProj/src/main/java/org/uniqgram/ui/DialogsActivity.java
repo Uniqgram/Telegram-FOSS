@@ -44,6 +44,7 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 
 import org.uniqgram.messenger.AndroidUtilities;
+import org.uniqgram.messenger.BuildConfig;
 import org.uniqgram.messenger.BuildVars;
 import org.uniqgram.messenger.ChatObject;
 import org.uniqgram.messenger.DialogObject;
@@ -349,26 +350,32 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         FrameLayout frameLayout = new FrameLayout(context);
-        mainLayout = new RelativeLayout(context);
 
-        // Uniqgram ads
-        adView = new AdView(getParentActivity());
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerId);
-        adView.setId(R.id.adview);
+        if(!BuildConfig.APPLICATION_ID.contains("plus")) {
+            mainLayout = new RelativeLayout(context);
 
-        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.MATCH_PARENT);
-        p.addRule(RelativeLayout.ABOVE, adView.getId());
+            // Uniqgram ads
+            adView = new AdView(getParentActivity());
+            adView.setAdSize(AdSize.SMART_BANNER);
+            adView.setAdUnitId(bannerId);
+            adView.setId(R.id.adview);
 
-        mainLayout.addView(frameLayout, p);
+            RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
+            p.addRule(RelativeLayout.ABOVE, adView.getId());
 
-        mainLayout.addView(adView, LayoutHelper.createRelative(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, RelativeLayout.ALIGN_PARENT_BOTTOM));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+            mainLayout.addView(frameLayout, p);
 
-        fragmentView = mainLayout;
+            mainLayout.addView(adView, LayoutHelper.createRelative(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, RelativeLayout.ALIGN_PARENT_BOTTOM));
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+
+            fragmentView = mainLayout;
+        } else {
+            fragmentView = frameLayout;
+        }
+
 
         listView = new RecyclerListView(context);
         listView.setVerticalScrollBarEnabled(true);
@@ -992,16 +999,19 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mainLayout.removeView(adView);
-        // Uniqgram ads
-        adView = new AdView(getParentActivity());
-        adView.setAdSize(AdSize.SMART_BANNER);
-        adView.setAdUnitId(bannerId);
-        adView.setId(R.id.adview);
 
-        mainLayout.addView(adView, LayoutHelper.createRelative(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, RelativeLayout.ALIGN_PARENT_BOTTOM));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+        if(!BuildConfig.APPLICATION_ID.contains("plus")) {
+            mainLayout.removeView(adView);
+            // Uniqgram ads
+            adView = new AdView(getParentActivity());
+            adView.setAdSize(AdSize.SMART_BANNER);
+            adView.setAdUnitId(bannerId);
+            adView.setId(R.id.adview);
+
+            mainLayout.addView(adView, LayoutHelper.createRelative(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, RelativeLayout.ALIGN_PARENT_BOTTOM));
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+        }
 
         if (!onlySelect && floatingButton != null) {
             floatingButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

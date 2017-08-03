@@ -61,9 +61,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        foss {
+        woads {
             debuggable false
             jniDebuggable false
+            minifyEnabled false
+            shrinkResources false
+            applicationIdSuffix ".plus"
+            buildConfigField "boolean", "PLUS", "true"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -77,8 +82,8 @@ android {
         manifest.srcFile 'config/release/AndroidManifest.xml'
     }
 
-    sourceSets.foss {
-        manifest.srcFile 'config/foss/AndroidManifest.xml'
+    sourceSets.woads {
+        manifest.srcFile 'config/release/AndroidManifest.xml'
     }
 
     productFlavors {
@@ -104,6 +109,9 @@ android {
             sourceSets.release {
                 manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
             }
+            sourceSets.woads {
+                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
+            }
             minSdkVersion 23
             versionCode = 4
         }
@@ -117,6 +125,9 @@ android {
             sourceSets.release {
                 manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
             }
+            sourceSets.woads {
+                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
+            }
             minSdkVersion 23
             versionCode = 3
         }
@@ -125,6 +136,9 @@ android {
                 manifest.srcFile 'config/debug/AndroidManifest_SDK23.xml'
             }
             sourceSets.release {
+                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
+            }
+            sourceSets.woads {
                 manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
             }
             versionCode = 5
