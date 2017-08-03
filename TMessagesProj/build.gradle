@@ -67,7 +67,6 @@ android {
             minifyEnabled false
             shrinkResources false
             applicationIdSuffix ".plus"
-            buildConfigField "boolean", "PLUS", "true"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -83,7 +82,7 @@ android {
     }
 
     sourceSets.woads {
-        manifest.srcFile 'config/release/AndroidManifest.xml'
+        manifest.srcFile 'config/plus/AndroidManifest.xml'
     }
 
     productFlavors {
@@ -110,7 +109,7 @@ android {
                 manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
             }
             sourceSets.woads {
-                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
+                manifest.srcFile 'config/plus/AndroidManifest_SDK23.xml'
             }
             minSdkVersion 23
             versionCode = 4
@@ -139,7 +138,7 @@ android {
                 manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
             }
             sourceSets.woads {
-                manifest.srcFile 'config/release/AndroidManifest_SDK23.xml'
+                manifest.srcFile 'config/plus/AndroidManifest_SDK23.xml'
             }
             versionCode = 5
         }
