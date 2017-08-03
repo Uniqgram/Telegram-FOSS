@@ -15,4 +15,6 @@ public class BuildVars {
     public static String BUILD_VERSION_STRING = "4.2";
     public static int APP_ID = 0; //obtain your own APP_ID at https://core.telegram.org/api/obtaining_api_id
     public static String APP_HASH = ""; //obtain your own APP_HASH at https://core.telegram.org/api/obtaining_api_id
+    public static String ADS_ID = "ca-app-pub-3940256099942544~3347511713";
+    public static String BANNER_ID = "ca-app-pub-3940256099942544/6300978111";
 }

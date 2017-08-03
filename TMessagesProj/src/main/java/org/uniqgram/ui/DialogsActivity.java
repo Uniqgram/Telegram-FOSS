@@ -97,7 +97,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     private AdView adView;
     private RelativeLayout mainLayout;
-    private String bannerId = "ca-app-pub-3940256099942544/6300978111";
+    private String bannerId = BuildVars.BANNER_ID;
 
     private RecyclerListView listView;
     private LinearLayoutManager layoutManager;
