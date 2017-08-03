@@ -36,7 +36,12 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 
 import org.uniqgram.messenger.AndroidUtilities;
 import org.uniqgram.messenger.BuildVars;
@@ -89,7 +94,11 @@ import org.uniqgram.ui.ActionBar.Theme;
 import java.util.ArrayList;
 
 public class DialogsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    
+
+    private AdView adView;
+    private RelativeLayout mainLayout;
+    private String bannerId = "ca-app-pub-3940256099942544/6300978111";
+
     private RecyclerListView listView;
     private LinearLayoutManager layoutManager;
     private DialogsAdapter dialogsAdapter;
@@ -340,8 +349,27 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         FrameLayout frameLayout = new FrameLayout(context);
-        fragmentView = frameLayout;
-        
+        mainLayout = new RelativeLayout(context);
+
+        // Uniqgram ads
+        adView = new AdView(getParentActivity());
+        adView.setAdSize(AdSize.SMART_BANNER);
+        adView.setAdUnitId(bannerId);
+        adView.setId(R.id.adview);
+
+        RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT);
+        p.addRule(RelativeLayout.ABOVE, adView.getId());
+
+        mainLayout.addView(frameLayout, p);
+
+        mainLayout.addView(adView, LayoutHelper.createRelative(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, RelativeLayout.ALIGN_PARENT_BOTTOM));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        fragmentView = mainLayout;
+
         listView = new RecyclerListView(context);
         listView.setVerticalScrollBarEnabled(true);
         listView.setItemAnimator(null);
@@ -964,6 +992,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        mainLayout.removeView(adView);
+        // Uniqgram ads
+        adView = new AdView(getParentActivity());
+        adView.setAdSize(AdSize.SMART_BANNER);
+        adView.setAdUnitId(bannerId);
+        adView.setId(R.id.adview);
+
+        mainLayout.addView(adView, LayoutHelper.createRelative(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, RelativeLayout.ALIGN_PARENT_BOTTOM));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
         if (!onlySelect && floatingButton != null) {
             floatingButton.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override

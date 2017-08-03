@@ -3,4 +3,5 @@
     <item name="menu_bold" type="id"/>
     <item name="menu_italic" type="id"/>
     <item name="menu_groupbolditalic" type="id"/>
+    <item name="adview" type="id"/>
 </resources>

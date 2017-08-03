@@ -25,6 +25,8 @@ import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Base64;
 
+import com.google.android.gms.ads.MobileAds;
+
 import org.uniqgram.tgnet.ConnectionsManager;
 import org.uniqgram.tgnet.SerializedData;
 import org.uniqgram.tgnet.TLRPC;
@@ -185,6 +187,8 @@ public class ApplicationLoader extends Application {
         }
 
         ApplicationLoader app = (ApplicationLoader)ApplicationLoader.applicationContext;
+        MobileAds.initialize(app, "ca-app-pub-3940256099942544~3347511713");
+
         FileLog.e("app initied");
 
         ContactsController.getInstance().checkAppAccount();
