@@ -187,8 +187,11 @@ public class ApplicationLoader extends Application {
         }
 
         ApplicationLoader app = (ApplicationLoader)ApplicationLoader.applicationContext;
+
+        String TestAdsId = "ca-app-pub-3940256099942544~3347511713";
+        String adsId = (BuildConfig.APPLICATION_ID.contains("beta")) ? TestAdsId : BuildVars.ADS_ID;
         if(!BuildConfig.APPLICATION_ID.contains("plus")) {
-            MobileAds.initialize(app, BuildVars.ADS_ID);
+            MobileAds.initialize(app, adsId);
         }
 
         FileLog.e("app initied");
