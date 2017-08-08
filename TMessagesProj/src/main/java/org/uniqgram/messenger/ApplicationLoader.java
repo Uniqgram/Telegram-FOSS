@@ -23,6 +23,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
+import android.support.multidex.MultiDexApplication;
 import android.util.Base64;
 
 import com.google.android.gms.ads.MobileAds;
@@ -35,7 +36,7 @@ import org.uniqgram.ui.Components.ForegroundDetector;
 import java.io.File;
 import java.io.RandomAccessFile;
 
-public class ApplicationLoader extends Application {
+public class ApplicationLoader extends MultiDexApplication {
     private static PendingIntent pendingIntent;
 
     @SuppressLint("StaticFieldLeak")

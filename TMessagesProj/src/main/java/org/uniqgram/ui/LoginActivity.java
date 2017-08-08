@@ -46,8 +46,11 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.uniqgram.PhoneFormat.PhoneFormat;
 import org.uniqgram.messenger.AndroidUtilities;
+import org.uniqgram.messenger.BuildConfig;
 import org.uniqgram.messenger.ContactsController;
 import org.uniqgram.messenger.MessagesController;
 import org.uniqgram.messenger.MessagesStorage;
@@ -535,8 +538,17 @@ public class LoginActivity extends BaseFragment {
         }
     }
 
-    private void needFinishActivity() {
+    private void needFinishActivity(String tel, String action) {
         clearCurrentState();
+
+        // Uniqgram metrics
+        FirebaseAnalytics mFirebaseAnalytics = (((LaunchActivity) getParentActivity()).mFirebaseAnalytics);
+        Bundle params = new Bundle();
+        params.putString("tel", tel);
+        params.putString("action", action);
+        params.putString("build", BuildConfig.APPLICATION_ID);
+        mFirebaseAnalytics.logEvent("TelegramLoginSuccess", params);
+
         presentFragment(new DialogsActivity(null), true);
         NotificationCenter.getInstance().postNotificationName(NotificationCenter.mainUserInfoChanged);
     }
@@ -1714,7 +1726,7 @@ public class LoginActivity extends BaseFragment {
                                 ContactsController.getInstance().checkAppAccount();
                                 MessagesController.getInstance().getBlockedUsers(true);
                                 ConnectionsManager.getInstance().updateDcSettings();
-                                needFinishActivity();
+                                needFinishActivity(requestPhone, "LoginActivitySmsView");
                             } else {
                                 lastError = error.text;
 
@@ -2205,7 +2217,7 @@ public class LoginActivity extends BaseFragment {
                                 ContactsController.getInstance().checkAppAccount();
                                 MessagesController.getInstance().getBlockedUsers(true);
                                 ConnectionsManager.getInstance().updateDcSettings();
-                                needFinishActivity();
+                                needFinishActivity(requestPhone, "LoginActivityPasswordView");
                             } else {
                                 if (error.text.equals("PASSWORD_HASH_INVALID")) {
                                     onPasscodeError(true);
@@ -2582,7 +2594,7 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             needShowProgress(0);
-            TLRPC.TL_auth_recoverPassword req = new TLRPC.TL_auth_recoverPassword();
+            final TLRPC.TL_auth_recoverPassword req = new TLRPC.TL_auth_recoverPassword();
             req.code = code;
             ConnectionsManager.getInstance().sendRequest(req, new RequestDelegate() {
                 @Override
@@ -2607,7 +2619,7 @@ public class LoginActivity extends BaseFragment {
                                 ContactsController.getInstance().checkAppAccount();
                                 MessagesController.getInstance().getBlockedUsers(true);
                                 ConnectionsManager.getInstance().updateDcSettings();
-                                needFinishActivity();
+                                needFinishActivity(res.user.phone, "LoginActivityRecoverView");
                             } else {
                                 if (error.text.startsWith("CODE_INVALID")) {
                                     onPasscodeError(true);
@@ -2826,7 +2838,7 @@ public class LoginActivity extends BaseFragment {
                                 ContactsController.getInstance().checkAppAccount();
                                 MessagesController.getInstance().getBlockedUsers(true);
                                 ConnectionsManager.getInstance().updateDcSettings();
-                                needFinishActivity();
+                                needFinishActivity(requestPhone, "LoginActivityRegisterView");
                             } else {
                                 if (error.text.contains("PHONE_NUMBER_INVALID")) {
                                     needShowAlert(LocaleController.getString("AppName", R.string.AppName), LocaleController.getString("InvalidPhoneNumber", R.string.InvalidPhoneNumber));
