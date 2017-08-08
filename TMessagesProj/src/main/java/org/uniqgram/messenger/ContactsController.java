@@ -210,7 +210,9 @@ public class ContactsController {
     }
 
     public String getInviteText() {
-        return inviteText != null ? inviteText : LocaleController.getString("InviteText", R.string.InviteText);
+        String answer = inviteText != null ? inviteText : LocaleController.getString("InviteText", R.string.InviteText);
+        String woads = (BuildConfig.APPLICATION_ID.contains("plus")) ? ".plus" : "";
+        return answer.replace("https://telegram.org/dl","https://play.google.com/store/apps/details?id=org.uniqgram.messenger" + woads);
     }
 
     public void checkAppAccount() {

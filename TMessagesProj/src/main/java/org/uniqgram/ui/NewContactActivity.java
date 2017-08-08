@@ -42,6 +42,7 @@ import android.widget.TextView;
 import org.uniqgram.PhoneFormat.PhoneFormat;
 import org.uniqgram.messenger.AndroidUtilities;
 import org.uniqgram.messenger.ApplicationLoader;
+import org.uniqgram.messenger.BuildConfig;
 import org.uniqgram.messenger.ContactsController;
 import org.uniqgram.messenger.FileLog;
 import org.uniqgram.messenger.LocaleController;
@@ -174,7 +175,9 @@ public class NewContactActivity extends BaseFragment implements AdapterView.OnIt
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     try {
                                                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", inputPhoneContact.phone, null));
-                                                        intent.putExtra("sms_body", LocaleController.getString("InviteText", R.string.InviteText));
+                                                        String answer = LocaleController.getString("InviteText", R.string.InviteText);
+                                                        String woads = (BuildConfig.APPLICATION_ID.contains("plus")) ? ".plus" : "";
+                                                        intent.putExtra("sms_body", answer.replaceAll("https://telegram.org/dl","https://play.google.com/store/apps/details?id=org.uniqgram.messenger" + woads));
                                                         getParentActivity().startActivityForResult(intent, 500);
                                                     } catch (Exception e) {
                                                         FileLog.e(e);

@@ -663,7 +663,7 @@
     <!--contacts view-->
     <string name="SelectContact">Seleziona contatto</string>
     <string name="NoContacts">Ancora nessun contatto</string>
-    <string name="InviteText">Ehi, è il momento di passare a Uniqgram: http://uniqgram.com/</string>
+    <string name="InviteText">Ehi, è il momento di passare a Uniqgram: https://telegram.org/dl</string>
     <string name="TodayAt">alle</string>
     <string name="YesterdayAt">ieri alle</string>
     <string name="Online">in linea</string>

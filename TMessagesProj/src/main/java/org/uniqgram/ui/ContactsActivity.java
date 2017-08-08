@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import org.uniqgram.messenger.AndroidUtilities;
 import org.uniqgram.messenger.ApplicationLoader;
+import org.uniqgram.messenger.BuildConfig;
 import org.uniqgram.messenger.BuildVars;
 import org.uniqgram.messenger.LocaleController;
 import org.uniqgram.messenger.MessagesStorage;
@@ -378,7 +379,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     try {
                                         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", arg1, null));
-                                        intent.putExtra("sms_body", LocaleController.getString("InviteText", R.string.InviteText));
+                                        String answer = LocaleController.getString("InviteText", R.string.InviteText);
+                                        String woads = (BuildConfig.APPLICATION_ID.contains("plus")) ? ".plus" : "";
+                                        intent.putExtra("sms_body",
+                                                answer.replace("https://telegram.org/dl","https://play.google.com/store/apps/details?id=org.uniqgram.messenger" + woads));
                                         getParentActivity().startActivityForResult(intent, 500);
                                     } catch (Exception e) {
                                         FileLog.e(e);
